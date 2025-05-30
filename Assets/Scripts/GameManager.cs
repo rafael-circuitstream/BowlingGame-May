@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        randomNumber = Random.Range(0, 101);
+        randomNumber = Random.Range(0, 2200);
         Instantiate(ballPrefab, transform.position, ballPrefab.transform.rotation);
     }
 
