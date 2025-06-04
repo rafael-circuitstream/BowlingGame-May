@@ -43,6 +43,13 @@ public class BowlingBall : MonoBehaviour
         arrow.SetActive(false);
         thrown = true;
         myRigidbody.AddForce(arrow.transform.forward * throwForce, ForceMode.Impulse);
+        Invoke("ResetBall", 6);
     }
 
+    void ResetBall()
+    {
+        //SPAWN BALL
+        FindAnyObjectByType<GameManager>().SpawnBall();
+        Destroy(gameObject);
+    }
 }
