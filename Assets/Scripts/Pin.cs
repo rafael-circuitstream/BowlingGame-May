@@ -2,13 +2,16 @@ using UnityEngine;
 
 public class Pin : MonoBehaviour
 {
-
+    public Rigidbody myRigidbody;
     public bool isFallen;
+    private Vector3 originalPosition;
+    private Quaternion originalQuaternion;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        originalPosition = transform.position;
+        originalQuaternion = transform.rotation;
     }
 
     // Update is called once per frame
@@ -30,7 +33,16 @@ public class Pin : MonoBehaviour
 
     public void ResetPin()
     {
+        myRigidbody.linearVelocity = Vector3.zero;
+        myRigidbody.angularVelocity = Vector3.zero;
 
+        transform.position = originalPosition;
+        transform.rotation = originalQuaternion;
+
+        gameObject.SetActive(true);
+
+
+        
     }
 
     private void OnCollisionEnter(Collision collision)

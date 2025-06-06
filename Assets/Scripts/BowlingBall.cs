@@ -49,7 +49,7 @@ public class BowlingBall : MonoBehaviour
     void ResetBall()
     {
         //SPAWN BALL
-        FindAnyObjectByType<GameManager>().SpawnBall();
+        FindAnyObjectByType<GameManager>().FinishThrow();
         Destroy(gameObject);
     }
 }

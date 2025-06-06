@@ -12,7 +12,7 @@ public class PitTrigger : MonoBehaviour
 
             if(manager != null)
             {
-                manager.SpawnBall();
+                manager.FinishThrow();
             }
 
             //Moment where ball needs to respawn
