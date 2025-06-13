@@ -3,7 +3,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public int totalScore;
-    public int currentScore;
+    public int currentScoreAtFrame;
+
+    public int firstThrowScore;
+    public int secondThrowScore;
+
     public int currentThrow;
     public Pin[] listOfPins;
     public GameObject ballPrefab;
@@ -14,7 +18,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         frameManager = FindAnyObjectByType<FrameManager>();
-
+        frameManager.gameManager = this;
         currentThrow = 1;
         SpawnBall();
     }
@@ -45,16 +49,28 @@ public class GameManager : MonoBehaviour
             if (variablePin.isFallen && variablePin.gameObject.activeInHierarchy)
             {
                 Debug.Log("Fallen");
-                currentScore++;
+                currentScoreAtFrame++;
                 variablePin.gameObject.SetActive(false);
             }
         }
 
+        if(currentThrow == 1)
+        {
+            firstThrowScore = currentScoreAtFrame;
+            frameManager.UpdateFirstThrowText();
+        }
+        else if(currentThrow == 2)
+        {
+            secondThrowScore = currentScoreAtFrame - firstThrowScore;
+            frameManager.UpdateSecondThrowText();
+        }
+
+
         currentThrow++;
 
-        if (currentThrow > 2 || currentScore == 10)
+        if (currentThrow > 2 || currentScoreAtFrame == 10)
         {
-            totalScore += currentScore;
+            totalScore += currentScoreAtFrame;
             ResetFrame();
         }
 
@@ -66,7 +82,10 @@ public class GameManager : MonoBehaviour
         //
         frameManager.NextFrame();
         currentThrow = 1;
-        currentScore = 0;
+        currentScoreAtFrame = 0;
+
+        firstThrowScore = 0;
+        secondThrowScore = 0;
 
         foreach(Pin temporaryPin in listOfPins)
         {
