@@ -6,7 +6,7 @@ public class BowlingBall : MonoBehaviour
     public float throwForce;
     public Rigidbody myRigidbody;
     public GameObject arrow;
-
+    public AudioSource rollingBallSound;
     private float horizontalInput;
     private bool thrown;
 
@@ -40,6 +40,9 @@ public class BowlingBall : MonoBehaviour
 
     void ThrowBall()
     {
+        rollingBallSound.time = 0.1f;
+        rollingBallSound.Play();
+        
         arrow.SetActive(false);
         thrown = true;
         myRigidbody.AddForce(arrow.transform.forward * throwForce, ForceMode.Impulse);

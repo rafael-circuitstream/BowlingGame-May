@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public int currentThrow;
     public Pin[] listOfPins;
     public GameObject ballPrefab;
+    public GameObject gameOverScreen;
 
     private FrameManager frameManager;
 
@@ -38,6 +39,10 @@ public class GameManager : MonoBehaviour
         if(frameManager.isGameOver == false)
         {
             Instantiate(ballPrefab, transform.position, ballPrefab.transform.rotation);
+        }
+        else
+        {
+            gameOverScreen.SetActive(true);
         }
        
     }

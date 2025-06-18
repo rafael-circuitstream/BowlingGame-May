@@ -4,6 +4,7 @@ public class Pin : MonoBehaviour
 {
     public Rigidbody myRigidbody;
     public bool isFallen;
+    public AudioSource hitSound;
     private Vector3 originalPosition;
     private Quaternion originalQuaternion;
 
@@ -44,13 +45,14 @@ public class Pin : MonoBehaviour
 
         
     }
-
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.gameObject.CompareTag("Player"))
+        if (collision.collider.gameObject.CompareTag("Player"))
         {
-            Debug.Log(gameObject.name + " was hit");
+            hitSound.pitch = Random.Range(0.9f, 1.15f);
+            hitSound.time = 0.4f;
+            hitSound.Play();
         }
-        
+
     }
 }
