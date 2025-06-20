@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     void PrepareNewThrow()
     {
+
         foreach (Pin variablePin in listOfPins)
         {
             if (variablePin.isFallen && variablePin.gameObject.activeInHierarchy)

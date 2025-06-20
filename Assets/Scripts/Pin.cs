@@ -49,8 +49,8 @@ public class Pin : MonoBehaviour
     {
         if (collision.collider.gameObject.CompareTag("Player"))
         {
-            hitSound.pitch = Random.Range(0.9f, 1.15f);
-            hitSound.time = 0.4f;
+            //hitSound.pitch = Random.Range(0.9f, 1.15f);
+            //hitSound.time = 0.4f;
             hitSound.Play();
         }
 
